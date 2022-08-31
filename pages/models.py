@@ -10,9 +10,9 @@ class Team(models.Model):
     telegram_link = models.URLField(max_length=100)
     vk_link = models.URLField(max_length=100)
     google_plus_link = models.URLField(max_length=100)
-    create_date = models.DateTimeField(auto_now_add=True)
+    created_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         # Check this realization later
-        name = [self.first_name, self.last_name]
-        return ' '.join(name)
+        # name = [self.first_name, self.last_name]
+        return self.first_name
