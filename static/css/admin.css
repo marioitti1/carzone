@@ -1,0 +1,43 @@
+/*Change the color for header background
+Add a shadow (red color)*/
+#header{
+    background-color: #fff !important;
+    color: #ff0000 !important;
+    box-shadow: 0px 0px 3px 0px #ff0000;
+}
+/*Change the color for buttons in header*/
+#header a:link, #header a:visited{
+    color: #000 !important;
+}
+/*Change the color for logout button*/
+#header a:link, #header a:visited, #logout-form button {
+    color: #000 !important;
+}
+
+a:link, a:visited{
+    color: #1c1f1f;
+}
+/*Change the color for background of  car's page address*/
+div.breadcrumbs {
+    background-color: #1c1f1f;
+}
+/*Change the color for cars->group of backgrounds (filters)*/
+.module h2, .module caption, .inline-group h2 {
+    background-color: #1c1f1f;
+}
+/*Change color of buttons in cars page*/
+.button, input[type=submit], input[type=button], .submit-row input, a.button{
+    background-color: #4e5557;
+}
+/*Change color of "Save" button in cars page*/
+.button.default, input[type=submit].default, .submit-row input.default {
+    background-color: #4e5557;
+}
+/*Change the background of buttons when they have been activated*/
+.button:active, input[type=submit]:active, input[type=button]:active, .button:focus, input[type=submit]:focus, input[type=button]:focus, .button:hover, input[type=submit]:hover, input[type=button]:hover{
+    background-color: #1c1f1f;
+}
+/*Change the background of "SAVE" button when it has been activated*/
+.button.default:active, input[type=submit].default:active, .button.default:focus, input[type=submit].default:focus, .button.default:hover, input[type=submit].default:hover{
+    background-color: #1c1f1f;
+}
