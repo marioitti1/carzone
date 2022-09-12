@@ -22,10 +22,26 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-p5$fat=tql(1#po%ykok)1fd%5f2z1t@en%*9(sz1*z9pr*_5i'
 
+# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+# EMAIL_FILE_PATH = BASE_DIR / 'emails'
+
+#  Settings for sending emails
+# EMAIL_HOST = 'smtp.gmial.com'
+# EMAIL_PORT = 465    # 587
+# EMAIL_HOST_USER = 'marioitti387@gmial.com'
+# EMAIL_HOST_PASSWORD = ''
+# EMAIL_USE_TLS = False
+# EMAIL_USE_SSL = True
+
+
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+LOGIN_REDIRECT_URL = 'dashboard'
 
 
 # Application definition
@@ -42,6 +58,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ckeditor',
     'django.contrib.humanize',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    #  Providers
+    'allauth.socialaccount.providers.vk',
+    'allauth.socialaccount.providers.yandex',
 ]
 
 MIDDLEWARE = [
@@ -145,3 +168,5 @@ from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
+
+SITE_ID = 1

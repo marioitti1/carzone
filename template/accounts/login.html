@@ -3,6 +3,9 @@
 {% block title %} | Login {% endblock %}
 {% block content %}
 {% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
+
 
 <!--Sub Banner start-->
 <div class="sub-banner overview-bgi">
@@ -49,11 +52,12 @@
                         </div>
                         <div class="clearfix"></div>
                         <ul class="social-list">
-                            <li><a href="#" class="facebook-bg"><i class="fa fa-facebook facebook-i"></i><span>Facebook</span></a></li>
-                            <li><a href="#" class="google-bg"><i class="fa fa-google google-i"></i><span>Google</span></a></li>
+                            <li><a href="{% provider_login_url 'vk' method='oauth2' %}" class="facebook-bg"><i class="fa fa-vk"></i><span>Vkontakte</span></a></li>
+                            <li><a href="{% provider_login_url 'yandex' %}" class="yandex-bg"><i class="fa fa-y-combinator icon-2x"></i><span>Yandex</span></a></li>
                         </ul>
                     </form>
                     <p>Don't have an account? <a href="{% url 'register' %}" class="thembo"> Register here</a></p>
+                    <p>Forget your password? <a href="{% url 'password_reset' %}" class="thembo"> Reset it here</a></p>
                 </div>
             </div>
         </div>

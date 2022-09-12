@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
+from django.core.mail import BadHeaderError, send_mail
+from django.http import HttpResponse, HttpResponseRedirect
 
 # Create your views here.
 def login(request):
@@ -8,8 +10,8 @@ def login(request):
         username = request.POST['username']
         password = request.POST['password']
         # Authentication of user
-        user = auth.authenticate(username=username, password=password)
-        print('user=', user)
+        user = auth.authenticate(request, username=username, password=password)
+        # print('user=', user)
         if user is not None:
             auth.login(request, user)
             messages.success(request, 'You are now logged in')
@@ -53,8 +55,25 @@ def logout(request):
     if request.method == 'POST':
         auth.logout(request)
         # messages.success(request, 'You are successfully logged out')
-        return redirect('home')
+        # return redirect('home')
     return redirect('home')
 
 def dashboard(request):
     return render(request, 'accounts/dashboard.html')
+
+def password_reset(request):
+    email = request.POST.get('email', '')
+    print('email', email)
+    if User.objects.filter(email=email).exists():
+        if email:
+            try:
+                send_mail(subject='Reset password', message='Reset your password', from_email='marioitti1@yandex.ru', recipient_list=[email])
+            except BadHeaderError:
+                return HttpResponse('Invalid header found')
+            return HttpResponseRedirect('login')
+        else:
+            # messages.error(request, 'Make sure that you entered email')
+            return render(request, 'accounts/password_reset.html')
+    else:
+        messages.error(request, 'Make sure that you entered valid email')
+        return render(request, 'accounts/password_reset.html')
