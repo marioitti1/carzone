@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-p5$fat=tql(1#po%ykok)1fd%5f2z1t@en%*9(sz1*z9pr*_5i'
 
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 # EMAIL_FILE_PATH = BASE_DIR / 'emails'
 
 env = environ.Env()
@@ -38,9 +38,6 @@ EMAIL_HOST = env('EMAIL_HOST')
 EMAIL_PORT = 587    # 465
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = 'marioitti387@gmail.com'
-# EMAIL_HOST_PASSWORD = 'Rdmcdb4c12344!Gmail@Nik'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
