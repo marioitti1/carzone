@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import environ
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,16 +25,24 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-p5$fat=tql(1#po%ykok)1fd%5f2z1t@en%*9(sz1*z9pr*_5i'
 
-# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_FILE_PATH = BASE_DIR / 'emails'
 
+env = environ.Env()
+environ.Env.read_env()
+
+
 #  Settings for sending emails
-# EMAIL_HOST = 'smtp.gmial.com'
-# EMAIL_PORT = 465    # 587
-# EMAIL_HOST_USER = 'marioitti387@gmial.com'
-# EMAIL_HOST_PASSWORD = ''
-# EMAIL_USE_TLS = False
-# EMAIL_USE_SSL = True
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_PORT = 587    # 465
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'marioitti387@gmail.com'
+# EMAIL_HOST_PASSWORD = 'Rdmcdb4c12344!Gmail@Nik'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 
 
 
@@ -47,6 +58,7 @@ LOGIN_REDIRECT_URL = 'dashboard'
 # Application definition
 
 INSTALLED_APPS = [
+    'contacts.apps.ContactsConfig',
     'cars.apps.CarsConfig',
     'pages.apps.PagesConfig',
     'accounts.apps.AccountsConfig',
