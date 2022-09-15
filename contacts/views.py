@@ -7,8 +7,6 @@ from django.contrib.auth.models import User
 # Create your views here.
 def inquiry(request):
 
-    send_mail('New car inquiry', 'You have a new inquiry for the car', 'marioitti387@gmail.com',
-              ['marioitti387@gmail.com'], fail_silently=True,)
 
     if request.method == 'POST':
         car_id = request.POST['car_id']
@@ -39,7 +37,7 @@ def inquiry(request):
         # print(type(admin_email))
 
 
-        # send_mail('New car inquiry', 'You have a new inquiry for the car' + car_title, 'marioitti387@gmail.com', ['egor.lotovev@gmail.com'], fail_silently=True,)
+        send_mail('New car inquiry', 'You have a new inquiry for the car' + car_title, 'marioitti387@gmail.com', [admin_email], fail_silently=True,)
 
         contact.save()
         messages.success(request, 'Your request has been submitted, we will get back to you shortly')
