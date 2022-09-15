@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
 import environ
 
 
@@ -45,6 +46,7 @@ EMAIL_USE_SSL = False
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = False  # Because we in production fase
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -84,6 +86,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'carzone.urls'
@@ -110,16 +113,19 @@ WSGI_APPLICATION = 'carzone.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'carzone_db',
-        'USER': 'postgres',
-        'PASSWORD': 'Rdmcdb4c12344Postgre!',
-        'HOST': 'localhost',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'carzone_db',
+#         'USER': 'postgres',
+#         'PASSWORD': 'Rdmcdb4c12344Postgre!',
+#         'HOST': 'localhost',
+#     }
+# }
 
+DATABASES = {
+    'default': dj_database_url.config(default='postgres://postgres:Rdmcdb4c12344Postgre!@localhost/carzone_db')
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -179,3 +185,6 @@ MESSAGE_TAGS = {
 }
 
 SITE_ID = 1
+
+# Whitenoise settings
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
